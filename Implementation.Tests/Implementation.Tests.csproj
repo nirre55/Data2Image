@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Implepentation\Implepentation.csproj" />
+    <ProjectReference Include="..\Implementation\Implementation.csproj" />
   </ItemGroup>
 
   <ItemGroup>
