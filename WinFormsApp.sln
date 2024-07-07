@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsApp", "WinFormsApp\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Implementation.Tests", "Implementation.Tests\Implementation.Tests.csproj", "{6DC614B4-4753-4E86-AFDC-E4023B78D9B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Implementation", "Implementation\Implementation.csproj", "{7C1FDD74-8C8B-48EB-BAD6-0A4F3D563F81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Implementation", "Implementation\Implementation.csproj", "{7C1FDD74-8C8B-48EB-BAD6-0A4F3D563F81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
