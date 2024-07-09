@@ -1,14 +1,18 @@
 using Implementation;
 using Implementation.Interfaces;
+using System.Drawing.Imaging;
+using System.Drawing;
 
 namespace WinFormsApp
 {
     public partial class Form1 : Form
     {
         private readonly IFileByteReader _fileByteReader;
-        public Form1(IFileByteReader fileByteReader)
+        private readonly IImageManager _imageManager;
+        public Form1(IFileByteReader fileByteReader, IImageManager imageManager)
         {
             _fileByteReader = fileByteReader;
+            _imageManager = imageManager;
             InitializeComponent();
         }
 
@@ -21,7 +25,17 @@ namespace WinFormsApp
         {
             var filePath = @"E:\test.mkv";
             var result = _fileByteReader.ReadFileBytes(filePath);
-            double ss = result.Length / 3.0;
+            var recreatedFilePath = @"E:\recreatedImage.png";
+            File.WriteAllBytes(recreatedFilePath, result);
+
+            // Créer une image à partir des bytes
+            var recreatedBitmap = _imageManager.CreateImageFromBytes(result);
+            Console.WriteLine($"Image recreated from bytes, dimensions: {recreatedBitmap.Width}x{recreatedBitmap.Height}");
+
+            // Sauvegarder l'image recréée
+            _imageManager.SaveImage(filePath, recreatedBitmap);
+            Console.WriteLine($"Recreated image saved to {recreatedFilePath}");
+
         }
     }
 }

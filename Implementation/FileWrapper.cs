@@ -13,5 +13,19 @@ namespace Implementation
         {
             return File.ReadAllBytes(path);
         }
+        public string ReadAllText(string filePath)
+        {
+            return File.ReadAllText(filePath);
+        }
+
+        public void WriteAllText(string filePath, string contents)
+        {
+            File.WriteAllText(filePath, contents);
+        }
+
+        public void AppendAllText(string filePath, string contents)
+        {
+            File.AppendAllText(filePath, contents);
+        }
     }
 }

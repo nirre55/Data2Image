@@ -21,6 +21,8 @@ namespace WinFormsApp
             services.AddTransient<IFileWrapper, FileWrapper>();
             services.AddTransient<IFileByteReader, FileByteReader>();
             services.AddSingleton<IFileLogger, FileLogger>();
+            services.AddTransient<IJsonFileManager, JsonFileManager>();
+            services.AddTransient<IImageManager, ImageManager>();
             services.AddSingleton<Form1>();
 
             var serviceProvider = services.BuildServiceProvider();
