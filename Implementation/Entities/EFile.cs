@@ -8,7 +8,7 @@ namespace Implementation.Entities
         public bool isBlackAndWhiteImage { get; set; }
         public int NombreDePixel { get; set; }
         public int NombreDePixelOrphelin { get; set; }
-
+        public int NombreImages { get; set; }
         public void CalculeNombrePixel()
         {
             if (isBlackAndWhiteImage)
@@ -21,6 +21,13 @@ namespace Implementation.Entities
                 NombreDePixel = NombreBytes / 3;
                 NombreDePixelOrphelin = NombreBytes % 3;
             }
+        }
+
+        public void SetImageNumber(int width, int height) 
+        {
+            if (NombreDePixel > width * height)
+                NombreImages = NombreDePixel % (width * height);
+            NombreImages = 1;
         }
     }
 }
