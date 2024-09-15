@@ -16,7 +16,7 @@ jobs:
 
     env:
       Solution_Name: WinFormsApp.sln
-      Test_Project_Path: ..\Implementation.Tests\Implementation.Tests.csproj
+      Test_Project_Path: Implementation.Tests\Implementation.Tests.csproj
 
     steps:
     - name: Checkout
