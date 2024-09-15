@@ -1,0 +1,21 @@
+﻿pourquoi quand on utilise la fonction fromArgb avec un alpha mois de 255 les valeur du RBG change ? 
+C'est une excellente question. Ce comportement peut sembler contre-intuitif au premier abord, mais il y a une explication logique derrière. Examinons pourquoi cela se produit.
+Lorsque vous utilisez Color.FromArgb() avec une valeur alpha inférieure à 255, les valeurs RGB semblent changer car elles sont automatiquement "prémultipliées" par la valeur alpha. Voici comment cela fonctionne :
+
+Prémultiplication Alpha :
+Quand vous créez une couleur avec une valeur alpha inférieure à 255, .NET applique automatiquement ce qu'on appelle la "prémultiplication alpha". Cela signifie que les valeurs RGB sont multipliées par la valeur alpha (normalisée entre 0 et 1).
+Formule de prémultiplication :
+Pour chaque composante (R, G, B) :
+Valeur stockée = Valeur originale * (Alpha / 255)
+Exemple :
+Supposons que vous créez une couleur avec :
+Alpha = 128 (50% opaque)
+R = 200, G = 100, B = 50
+Les valeurs stockées seront :
+R = 200 * (128/255) ≈ 100
+G = 100 * (128/255) ≈ 50
+B = 50 * (128/255) ≈ 25
+Raison de ce comportement :
+
+Optimisation des performances : La prémultiplication permet des calculs de mélange (blending) plus rapides.
+Cohérence dans les calculs : Cela assure que les opérations de mélange de couleurs donnent des résultats cohérents, surtout quand on travaille avec des images partiellement transparentes.
