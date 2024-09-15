@@ -25,13 +25,13 @@ namespace Implementation.Tests
         {
             // Arrange
             var filePath = "test.json";
-            var expectedObject = _fixure.Create<EFile>();
+            var expectedObject = _fixure.Create<EJsonFile>();
             var fileContents = JsonConvert.SerializeObject(expectedObject);
 
             _fileWrapperMock.Setup(fm => fm.ReadAllText(filePath)).Returns(fileContents);
 
             // Act
-            var result = _jsonFileManager.ReadFromJsonFile<EFile>(filePath);
+            var result = _jsonFileManager.ReadFromJsonFile<EJsonFile>(filePath);
 
             // Assert
             result.Should().BeEquivalentTo(expectedObject);
@@ -42,7 +42,7 @@ namespace Implementation.Tests
         {
             // Arrange
             var filePath = "test.json";
-            var objectToWrite = _fixure.Create<EFile>();
+            var objectToWrite = _fixure.Create<EJsonFile>();
             var expectedContent = JsonConvert.SerializeObject(objectToWrite, Formatting.Indented);
 
             // Act
@@ -51,6 +51,5 @@ namespace Implementation.Tests
             // Assert
             _fileWrapperMock.Verify(fm => fm.WriteAllText(filePath, expectedContent), Times.Once);
         }
-
     }
 }

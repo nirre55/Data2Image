@@ -1,7 +1,7 @@
 ﻿
 namespace Implementation.Entities
 {
-    public class EFile
+    public class EJsonFile
     {
         public int NombreBytes { get; set; }
         public string Extension { get; set; } = string.Empty;
