@@ -15,8 +15,8 @@ jobs:
     runs-on: windows-latest
 
     env:
-      Solution_Name: WinFormsApp.sln                        # Nom de votre solution
-      Test_Project_Path: ..\Implementation.Tests\Implementation.Tests.csproj  # Chemin relatif vers le projet de test
+      Solution_Name: WinFormsApp.sln
+      Test_Project_Path: ..\Implementation.Tests\Implementation.Tests.csproj
 
     steps:
     - name: Checkout
@@ -24,38 +24,26 @@ jobs:
       with:
         fetch-depth: 0
 
-    # Install the .NET SDK
     - name: Install .NET SDK
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
 
-    # Add MSBuild to the PATH
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v2
 
-    # Restore the solution
     - name: Restore the solution
-      run: dotnet restore $env:Solution_Name
+      run: dotnet restore ${{ env.Solution_Name }}
 
-    # Build all projects in the solution
     - name: Build all projects
-      run: dotnet build $env:Solution_Name /p:Configuration=$env:Configuration
+      run: dotnet build ${{ env.Solution_Name }} /p:Configuration=${{ matrix.configuration }} /p:Platform="Any CPU"
 
-    # Execute all unit tests in the test project
     - name: Execute unit tests
-      run: dotnet test $env:Test_Project_Path /p:Configuration=$env:Configuration
+      run: dotnet test ${{ env.Test_Project_Path }} /p:Configuration=${{ matrix.configuration }}
 
-    # Optionally, you can also add steps to test other projects if you have multiple test projects
-    # - name: Execute additional unit tests
-    #   run: dotnet test path/to/another/test/project.csproj /p:Configuration=$env:Configuration
-
-    # Optional: Create a release package for the WinForms application
-    # This step can be customized based on your packaging needs
     - name: Create release package
-      run: dotnet publish WinFormsApp/WinFormsApp.csproj --configuration $env:Configuration --output ./publish
+      run: dotnet publish WinFormsApp/WinFormsApp.csproj --configuration ${{ matrix.configuration }} --output ./publish
 
-    # Upload the build artifacts
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
