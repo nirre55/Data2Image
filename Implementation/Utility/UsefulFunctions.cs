@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Drawing;
-using System.Reflection.Metadata.Ecma335;
-using Implementation.Utility.Interfaces;
+﻿using Implementation.Utility.Interfaces;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace Implementation.Utility
 {
@@ -17,10 +16,10 @@ namespace Implementation.Utility
             byte green = indexArray + 1 < array.Length ? array[indexArray + 1] : (byte)0;
             byte blue = indexArray + 2 < array.Length ? array[indexArray + 2] : (byte)0;
 
-            return Color.FromArgb(red, green, blue);
+            return Color.FromRgb(red, green, blue);
         }
 
-        public byte[] GetByteFromColor(byte[] array, int indexArray, Color squareColor)
+        public byte[] GetByteFromColor(byte[] array, int indexArray, Rgba32 squareColor)
         {
             // Vérifier si l'index est en dehors des limites du tableau
             if (indexArray >= array.Length)

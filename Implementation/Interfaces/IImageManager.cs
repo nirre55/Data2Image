@@ -1,10 +1,11 @@
-﻿using System.Drawing;
+﻿using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp;
 
 namespace Implementation.Interfaces
 {
     public interface IImageManager
     {
-        void FillImageWithBytes(Bitmap image, int squareSize, byte[] byte_array);
-        byte[] ReadImageBySquares(Bitmap image, int squareSize, int byteLength);
+        void FillImageWithBytes(Image image, int squareSize, byte[] byte_array);
+        byte[] ReadImageBySquares(Image<Rgba32> image, int squareSize, byte[] byteArray);
     }
 }
