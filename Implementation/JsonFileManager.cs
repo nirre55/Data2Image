@@ -1,4 +1,6 @@
 ﻿using Implementation.Interfaces;
+using Implementation.Wrapper;
+using Implementation.Wrapper.Interfaces;
 using Newtonsoft.Json;
 
 namespace Implementation
@@ -6,19 +8,23 @@ namespace Implementation
     public class JsonFileManager : IJsonFileManager
     {
         private readonly IFileWrapper _fileWrapper;
-        public JsonFileManager(IFileWrapper fileWrapper) 
+        private readonly IJsonConvertWrapper _jsonSerializerWrapper;
+        public JsonFileManager(IFileWrapper fileWrapper, IJsonConvertWrapper jsonSerializerWrapper) 
         { 
-            _fileWrapper = fileWrapper;                       
+            _fileWrapper = fileWrapper;
+            _jsonSerializerWrapper = jsonSerializerWrapper;
         }
+
         public T ReadFromJsonFile<T>(string filePath)
         {
             var fileContents = _fileWrapper.ReadAllText(filePath);
-            return JsonConvert.DeserializeObject<T>(fileContents);
+            return _jsonSerializerWrapper.DeserializeObject<T>(fileContents);  
         }
 
         public void WriteToJsonFile<T>(string filePath, T objectToWrite, bool append = false)
         {
-            var contentsToWriteToFile = JsonConvert.SerializeObject(objectToWrite, Formatting.Indented);
+            var contentsToWriteToFile = _jsonSerializerWrapper.SerializeObject(objectToWrite, Formatting.Indented);
+
             if (append)
             {
                 _fileWrapper.AppendAllText(filePath, contentsToWriteToFile);

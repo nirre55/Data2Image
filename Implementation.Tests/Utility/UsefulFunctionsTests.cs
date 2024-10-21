@@ -1,6 +1,6 @@
-﻿using System.Drawing;
-using Xunit;
+﻿
 using Implementation.Utility;
+using SixLabors.ImageSharp;
 
 namespace Implementation.Tests.Utility
 {
@@ -24,7 +24,7 @@ namespace Implementation.Tests.Utility
             Color result = _usefulFunctions.GetColorFromArray(byteArray, indexArray);
 
             // Assert
-            Color expectedColor = Color.FromArgb(255, 128, 64);
+            Color expectedColor = Color.FromRgb(255, 128, 64);
             Assert.Equal(expectedColor, result);
         }
 
@@ -39,7 +39,7 @@ namespace Implementation.Tests.Utility
             Color result = _usefulFunctions.GetColorFromArray(byteArray, indexArray);
 
             // Assert
-            Color expectedColor = Color.FromArgb(255, 128, 0); // Bleu est 0 par défaut
+            Color expectedColor = Color.FromRgb(255, 128, 0); // Bleu est 0 par défaut
             Assert.Equal(expectedColor, result);
         }
 
@@ -54,7 +54,7 @@ namespace Implementation.Tests.Utility
             Color result = _usefulFunctions.GetColorFromArray(byteArray, indexArray);
 
             // Assert
-            Color expectedColor = Color.FromArgb(255, 0, 0); // Vert et Bleu sont 0 par défaut
+            Color expectedColor = Color.FromRgb(255, 0, 0); // Vert et Bleu sont 0 par défaut
             Assert.Equal(expectedColor, result);
         }
 
@@ -92,7 +92,7 @@ namespace Implementation.Tests.Utility
             // Arrange
             byte[] byteArray = new byte[3];
             int indexArray = 0;
-            Color color = Color.FromArgb(255, 128, 64); // Rouge = 255, Vert = 128, Bleu = 64
+            Color color = Color.FromRgb(255, 128, 64); // Rouge = 255, Vert = 128, Bleu = 64
 
             // Act
             byte[] result = _usefulFunctions.GetByteFromColor(byteArray, indexArray, color);
@@ -109,7 +109,7 @@ namespace Implementation.Tests.Utility
             // Arrange
             byte[] byteArray = new byte[2]; // Taille limitée à 2 bytes
             int indexArray = 0;
-            Color color = Color.FromArgb(255, 128, 64); // Rouge = 255, Vert = 128, Bleu = 64
+            Color color = Color.FromRgb(255, 128, 64); // Rouge = 255, Vert = 128, Bleu = 64
 
             // Act
             byte[] result = _usefulFunctions.GetByteFromColor(byteArray, indexArray, color);
@@ -126,7 +126,7 @@ namespace Implementation.Tests.Utility
             // Arrange
             byte[] byteArray = new byte[1]; // Taille limitée à 1 byte
             int indexArray = 0;
-            Color color = Color.FromArgb(255, 128, 64); // Rouge = 255, Vert = 128, Bleu = 64
+            Color color = Color.FromRgb(255, 128, 64); // Rouge = 255, Vert = 128, Bleu = 64
 
             // Act
             byte[] result = _usefulFunctions.GetByteFromColor(byteArray, indexArray, color);
@@ -141,7 +141,7 @@ namespace Implementation.Tests.Utility
             // Arrange
             byte[] byteArray = new byte[3]; // Tableau de 3 bytes
             int indexArray = 3; // Index en dehors de la taille du tableau
-            Color color = Color.FromArgb(255, 128, 64);
+            Color color = Color.FromRgb(255, 128, 64);
 
             // Act
             byte[] result = _usefulFunctions.GetByteFromColor(byteArray, indexArray, color);
